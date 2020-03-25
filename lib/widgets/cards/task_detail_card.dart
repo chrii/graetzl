@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:graetzl/models/task_model.dart';
 
 class TaskDetailCard extends StatelessWidget {
-  final String user;
-  final String type;
-  final String title;
-  final String description;
-  final String avatar;
-  final String image;
+  final Task task;
 
-  TaskDetailCard(
-      {@required this.user,
-      @required this.type,
-      @required this.title,
-      this.description,
-      this.avatar,
-      this.image});
+  // @TODO
+  // Userdata should come as an object
+  // Avatar is implemented so that the fallback can fall back
+  final String user;
+  final String avatar;
+
+  TaskDetailCard({this.task, this.user, this.avatar});
 
   String get _assetImage =>
-      image == null ? "assets/images/gulasch2.jpg" : image;
+      task.image == null ? "assets/images/gulasch2.jpg" : task.image;
 
-  String get _description => description == null ? "" : description;
+  String get _description =>
+      task.taskDescription == null ? "" : task.taskDescription;
 
   Widget _assetAvatar(BuildContext ctx) => avatar == null
       ? CircleAvatar(
@@ -42,7 +39,7 @@ class TaskDetailCard extends StatelessWidget {
           user,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        subtitle: Text(type),
+        subtitle: Text(task.taskType),
       );
 
   Widget _pictureContainer(BuildContext ctx) => Container(
@@ -62,7 +59,7 @@ class TaskDetailCard extends StatelessWidget {
             Container(
               padding: EdgeInsets.only(bottom: 5.0),
               child: Text(
-                title,
+                task.taskName,
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,

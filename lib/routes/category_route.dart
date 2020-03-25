@@ -3,39 +3,19 @@ import '../mixins/device_mixins.dart';
 import '../widgets/lists/category_list.dart';
 
 class CategoryRoute extends StatelessWidget with DeviceSpecificMedia {
-/*   final String title;
-
-  CategoryRoute({this.title}); */
-
-  final List tasks = [
-    {
-      "taskId": 1,
-      "photo": "placeholder",
-      "taskName": "Kartoffelgulasch",
-      "taskType": "foodsharing",
-      "taskDescription":
-          "Ich habe ein Kartoffel Gulasch gemacht und es blieb etwas übrig. Bitte melden wenn Interesse."
-    },
-    {
-      "taskId": 2,
-      "photo": "placeholder",
-      "taskName": "Einkauf",
-      "taskType": "helpingHand",
-      "taskDescription":
-          "Ich sitze derzeit mit einem gebrochenen Bei zuhause und kann nich einkaufen gehen."
-    }
-  ];
-
   @override
   Widget build(BuildContext context) {
     final _routeArguments =
         ModalRoute.of(context).settings.arguments as Map<String, Object>;
+    print(_routeArguments['tasks']);
     final appBar = AppBar(
       title: Text(
         _routeArguments['title'],
       ),
     );
+
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
@@ -69,6 +49,7 @@ class CategoryRoute extends StatelessWidget with DeviceSpecificMedia {
                 ],
               ),
             ),
+            SizedBox(height: 5.0),
             Container(
               height: deviceHeight(context, appBar),
               child: CategoryList(_routeArguments['tasks']),
