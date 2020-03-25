@@ -15,6 +15,7 @@ class CategoryRoute extends StatelessWidget with DeviceSpecificMedia {
     );
 
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: appBar,
       body: SingleChildScrollView(
         child: Column(

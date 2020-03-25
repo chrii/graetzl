@@ -12,11 +12,7 @@ class CategoryList extends StatelessWidget {
       itemCount: tasks.length,
       itemBuilder: (context, index) {
         final task = tasks[index];
-        return TaskListCard(
-          title: task.taskName,
-          description: task.taskDescription,
-          type: task.taskType,
-        );
+        return TaskListCard(task);
       },
     );
   }

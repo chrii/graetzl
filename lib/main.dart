@@ -11,6 +11,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.green,
         accentColor: Colors.greenAccent,
+        backgroundColor: Color.fromRGBO(232, 248, 235, 1),
       ),
       home: Home(),
       routes: routes,
