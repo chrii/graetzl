@@ -48,9 +48,8 @@ class Home extends StatelessWidget with DeviceSpecificMedia {
         backgroundColor: Colors.green,
       );
 
+  @override
   Widget build(BuildContext context) {
-    final user = USERS.firstWhere((item) => item['id'] == 1);
-    print(user['user']);
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(

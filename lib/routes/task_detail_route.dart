@@ -9,9 +9,11 @@ class TaskDetailRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     final Task _task = (ModalRoute.of(context).settings.arguments
         as Map<String, Object>)['payload'];
+
     final appBar = AppBar(
       title: Text("Detail Page"),
     );
+
     return Scaffold(
       appBar: appBar,
       body: TaskDetailCard(

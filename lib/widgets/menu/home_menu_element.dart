@@ -13,7 +13,7 @@ class HomeMenuElement extends StatelessWidget {
   void _createAndNavigate(BuildContext context) {
     final specificTasks =
         TASKS.where((item) => (item['category'] as List).contains(id)).toList();
-    print(specificTasks.toString());
+
     Navigator.of(context).pushNamed("/categories", arguments: {
       "title": title,
       "image": mainImage,
