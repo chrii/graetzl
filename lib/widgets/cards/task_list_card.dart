@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:graetzl/models/task_model.dart';
 
 class TaskListCard extends StatelessWidget {
-  final String title;
-  final String type;
-  final String description;
-  final String imagePath;
+  final Task task;
 
-  TaskListCard({this.title, this.description, this.type, this.imagePath});
+  TaskListCard(this.task);
+
+  void _navigate(BuildContext context) =>
+      Navigator.of(context).pushNamed("/detail", arguments: task);
 
   Widget build(BuildContext ctx) {
     return Card(
@@ -15,19 +16,19 @@ class TaskListCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           ListTile(
-            title: Text(title),
-            subtitle: Text(type),
+            title: Text(task.taskName),
+            subtitle: Text(task.taskType),
             leading: CircleAvatar(
-              backgroundImage: imagePath == null
+              backgroundImage: task.image == null
                   ? AssetImage("assets/images/gulasch2.jpg")
-                  : AssetImage(imagePath),
+                  : AssetImage(task.image),
             ),
           ),
           Container(
             padding: EdgeInsets.only(left: 15.0, right: 15.0),
             alignment: Alignment.bottomLeft,
             child: Text(
-              description,
+              task.taskDescription,
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -36,7 +37,7 @@ class TaskListCard extends StatelessWidget {
             children: <Widget>[
               FlatButton(
                 textColor: Theme.of(ctx).accentColor,
-                onPressed: () {},
+                onPressed: () => _navigate(ctx),
                 child: Text("More Info"),
               ),
             ],

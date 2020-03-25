@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:graetzl/models/task_model.dart';
 import '../cards/task_list_card.dart';
 
 class CategoryList extends StatelessWidget {
-  final List tasks;
+  final List<Task> tasks;
 
   CategoryList(this.tasks);
 
@@ -11,11 +12,7 @@ class CategoryList extends StatelessWidget {
       itemCount: tasks.length,
       itemBuilder: (context, index) {
         final task = tasks[index];
-        return TaskListCard(
-          title: task['taskName'],
-          description: task['taskDescription'],
-          type: task['taskType'],
-        );
+        return TaskListCard(task);
       },
     );
   }

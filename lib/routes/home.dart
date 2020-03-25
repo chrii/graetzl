@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graetzl/mixins/device_mixins.dart';
 import 'package:graetzl/widgets/menu/home_menu_element.dart';
-import '../database/dbmock.dart';
 
 const List MAIN_MENU = [
   {
@@ -48,10 +47,10 @@ class Home extends StatelessWidget with DeviceSpecificMedia {
         backgroundColor: Colors.green,
       );
 
+  @override
   Widget build(BuildContext context) {
-    final user = USERS.firstWhere((item) => item['id'] == 1);
-    print(user['user']);
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: appBar,
       body: SingleChildScrollView(
         child: Column(

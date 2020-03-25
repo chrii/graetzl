@@ -4,18 +4,22 @@ import 'package:graetzl/models/task_model.dart';
 import 'package:graetzl/widgets/cards/task_detail_card.dart';
 
 class TaskDetailRoute extends StatelessWidget {
-  final _user = USERS.firstWhere((item) => item['id'] == 1);
-
+  @override
   Widget build(BuildContext context) {
-    final Task _task = (ModalRoute.of(context).settings.arguments
-        as Map<String, Object>)['payload'];
+    // @TODO:
+    // Userdata should come from auth
+    final _user = USERS.firstWhere((item) => item['id'] == 1);
+
+    final Task _task = ModalRoute.of(context).settings.arguments;
+
     final appBar = AppBar(
       title: Text("Detail Page"),
     );
+
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: appBar,
-      body: TaskDetailCard(
-          user: _user['user'], type: _task.taskType, title: _task.taskName),
+      body: TaskDetailCard(user: _user['user'], task: _task),
     );
   }
 }
