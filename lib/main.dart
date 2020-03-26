@@ -11,7 +11,7 @@ void main() {
   runApp(App());
 }
 
-final bool _isLoggedIn = false;
+final bool _isLoggedIn = true;
 
 class App extends StatelessWidget {
   build(BuildContext context) {
