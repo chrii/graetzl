@@ -23,6 +23,28 @@ const TASKS = [
         "Ich habe ein Kartoffel Gulasch gemacht und es blieb etwas übrig. Bitte melden wenn Interesse."
   },
   {
+    "taskId": 12,
+    "user": 1,
+    "taskName": "Kartoffelgulasch4",
+    "image": "assets/images/gulasch2.jpg",
+    "taskType": "Foodsharing",
+    "coordinates": [48.218882, 16.337248],
+    "category": [2],
+    "taskDescription":
+        "Ich habe ein Kartoffel Gulasch gemacht und es blieb etwas übrig. Bitte melden wenn Interesse."
+  },
+  {
+    "taskId": 13,
+    "user": 1,
+    "taskName": "Kartoffelgulasch4",
+    "image": "assets/images/gulasch2.jpg",
+    "taskType": "Foodsharing",
+    "coordinates": [48.218882, 16.337248],
+    "category": [2],
+    "taskDescription":
+        "Ich habe ein Kartoffel Gulasch gemacht und es blieb etwas übrig. Bitte melden wenn Interesse."
+  },
+  {
     "taskId": 9,
     "user": 1,
     "taskName": "Gemüsesuppe mit Grießnockerl",

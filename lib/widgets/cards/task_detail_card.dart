@@ -18,9 +18,9 @@ class TaskDetailCard extends StatelessWidget {
   String get _description =>
       task.taskDescription == null ? "" : task.taskDescription;
 
-  Widget _assetAvatar(BuildContext ctx) => avatar == null
+  Widget _assetAvatar(BuildContext context) => avatar == null
       ? CircleAvatar(
-          backgroundColor: Theme.of(ctx).accentColor,
+          backgroundColor: Theme.of(context).accentColor,
           child: Icon(
             Icons.account_circle,
             color: Colors.white,
@@ -30,10 +30,10 @@ class TaskDetailCard extends StatelessWidget {
           backgroundImage: AssetImage(avatar),
         );
 
-  Widget _headerTile(BuildContext ctx) => ListTile(
+  Widget _headerTile(BuildContext context) => ListTile(
         leading: CircleAvatar(
-          backgroundColor: Theme.of(ctx).accentColor,
-          child: _assetAvatar(ctx),
+          backgroundColor: Theme.of(context).accentColor,
+          child: _assetAvatar(context),
         ),
         title: Text(
           user,
@@ -42,9 +42,9 @@ class TaskDetailCard extends StatelessWidget {
         subtitle: Text(task.taskType),
       );
 
-  Widget _pictureContainer(BuildContext ctx) => Container(
+  Widget _pictureContainer(BuildContext context) => Container(
         height: 200,
-        width: MediaQuery.of(ctx).size.width,
+        width: MediaQuery.of(context).size.width,
         child: Image(
           image: AssetImage(_assetImage),
           fit: BoxFit.fitWidth,
@@ -71,26 +71,26 @@ class TaskDetailCard extends StatelessWidget {
         ),
       );
 
-  Widget _buttonBar(BuildContext ctx) => ButtonBar(
+  Widget _buttonBar(BuildContext context) => ButtonBar(
         children: <Widget>[
           FlatButton(
             onPressed: () {},
             child: Text("Anschreiben"),
-            textColor: Theme.of(ctx).accentColor,
+            textColor: Theme.of(context).accentColor,
           ),
         ],
       );
 
-  Widget build(BuildContext ctx) {
+  Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Card(
         elevation: 4.0,
         child: Column(
           children: <Widget>[
-            _headerTile(ctx),
-            _pictureContainer(ctx),
+            _headerTile(context),
+            _pictureContainer(context),
             _textContainer,
-            _buttonBar(ctx),
+            _buttonBar(context),
           ],
         ),
       ),
