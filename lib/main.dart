@@ -5,8 +5,10 @@ import 'package:graetzl/routes/routes.dart';
 
 void main() => runApp(App());
 
+final bool _isLoggedIn = false;
+
 class App extends StatelessWidget {
-  build(BuildContext ctx) {
+  build(BuildContext context) {
     return MaterialApp(
       title: "Grätzl",
       theme: ThemeData(
@@ -14,7 +16,7 @@ class App extends StatelessWidget {
         accentColor: Colors.greenAccent,
         backgroundColor: Color.fromRGBO(232, 248, 235, 1),
       ),
-      home: LoginRoute(),
+      home: _isLoggedIn ? Home() : LoginRoute(),
       routes: routes,
     );
   }

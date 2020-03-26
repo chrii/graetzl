@@ -9,11 +9,8 @@ class _MailLoginFieldState extends State<MailLoginField> {
   final _mailInput = TextEditingController();
   bool _isVaild = true;
 
-  void _validate() {
-    setState(() {
-      _isVaild = EmailValidator.validate(_mailInput.text);
-    });
-  }
+  void _validate() =>
+      setState(() => _isVaild = EmailValidator.validate(_mailInput.text));
 
   build(BuildContext context) {
     return Column(
