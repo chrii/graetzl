@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:graetzl/routes/home.dart';
 import 'package:graetzl/routes/login_route.dart';
 import 'package:graetzl/routes/routes.dart';
 
-void main() => runApp(App());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
+  runApp(App());
+}
 
 final bool _isLoggedIn = false;
 
