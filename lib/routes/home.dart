@@ -91,7 +91,7 @@ class Home extends StatelessWidget with DeviceSpecificMedia {
                   crossAxisSpacing: 10.0,
                   mainAxisSpacing: 10.0,
                 ),
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(10.0),
                 children: <Widget>[
                   ...MAIN_MENU
                       .map(

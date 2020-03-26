@@ -64,8 +64,8 @@ class HomeMenuElement extends StatelessWidget {
           ],
           borderRadius: BorderRadius.circular(5.0),
           gradient: LinearGradient(colors: [
+            Colors.greenAccent,
             Colors.green,
-            Colors.limeAccent,
           ], begin: Alignment.bottomRight, end: Alignment.topCenter),
         ),
       ),
