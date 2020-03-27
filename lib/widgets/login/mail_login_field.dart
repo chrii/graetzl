@@ -49,7 +49,7 @@ class _MailLoginFieldState extends State<MailLoginField> {
           ],
         ),
         SizedBox(height: 10.0),
-        Text("Oder logg dich hier ein"),
+        Text(""),
         ButtonBar(
           alignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
