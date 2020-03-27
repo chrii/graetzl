@@ -16,6 +16,7 @@ class _MailLoginFieldState extends State<MailLoginField> {
 
   build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         SizedBox(height: 10.0),
         TextField(
@@ -33,7 +34,7 @@ class _MailLoginFieldState extends State<MailLoginField> {
           obscureText: true,
         ),
         ButtonBar(
-          alignment: MainAxisAlignment.spaceEvenly,
+          alignment: MainAxisAlignment.start,
           children: <Widget>[
             RaisedButton.icon(
               elevation: 5.0,
@@ -46,21 +47,32 @@ class _MailLoginFieldState extends State<MailLoginField> {
               icon: Icon(Icons.send),
               label: Text("Submit"),
             ),
+            FlatButton(
+              textColor: Theme.of(context).primaryColor,
+              onPressed: () {},
+              child: Text("Registrieren"),
+            ),
           ],
         ),
         SizedBox(height: 10.0),
-        Text(""),
+        Container(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "Alternativ",
+            style: TextStyle(fontSize: 15.0),
+          ),
+        ),
         ButtonBar(
-          alignment: MainAxisAlignment.spaceEvenly,
+          alignment: MainAxisAlignment.start,
           children: <Widget>[
-            OAuthButton(
-                icon: FaIcon(FontAwesomeIcons.facebook),
-                label: "Facebook",
-                color: Colors.blue),
             OAuthButton(
                 icon: FaIcon(FontAwesomeIcons.google),
                 label: "Google",
                 color: Colors.red),
+            OAuthButton(
+                icon: FaIcon(FontAwesomeIcons.facebook),
+                label: "Facebook",
+                color: Colors.blue),
           ],
         ),
       ],
