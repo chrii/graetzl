@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:graetzl/routes/home.dart';
+import 'package:graetzl/routes/login_route.dart';
 import 'package:graetzl/routes/routes.dart';
 
-void main() => runApp(App());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
+  runApp(App());
+}
+
+final bool _isLoggedIn = true;
 
 class App extends StatelessWidget {
-  build(BuildContext ctx) {
+  build(BuildContext context) {
     return MaterialApp(
       title: "Grätzl",
       theme: ThemeData(
@@ -13,7 +22,7 @@ class App extends StatelessWidget {
         accentColor: Colors.greenAccent,
         backgroundColor: Color.fromRGBO(232, 248, 235, 1),
       ),
-      home: Home(),
+      home: _isLoggedIn ? Home() : LoginRoute(),
       routes: routes,
     );
   }

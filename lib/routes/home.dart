@@ -66,19 +66,20 @@ class Home extends StatelessWidget with DeviceSpecificMedia {
                     image: AssetImage("assets/images/mainPhoto.png"),
                   ),
                   Positioned(
-                      bottom: 10.0,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 5.0, horizontal: 10.0),
-                        color: Colors.black45,
-                        child: Text(
-                          'Die Nachbarschafts App',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.0),
-                        ),
-                      )),
+                    bottom: 10.0,
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                      color: Colors.black45,
+                      child: Text(
+                        'Die Nachbarschafts App',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.0),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -91,7 +92,7 @@ class Home extends StatelessWidget with DeviceSpecificMedia {
                   crossAxisSpacing: 10.0,
                   mainAxisSpacing: 10.0,
                 ),
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(10.0),
                 children: <Widget>[
                   ...MAIN_MENU
                       .map(
