@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:graetzl/models/user.dart';
 import 'package:graetzl/routes/home.dart';
 import 'package:graetzl/routes/login_route.dart';
+import 'package:provider/provider.dart';
 //import 'package:graetzl/services/auth.dart';
 
 class TabMenuController extends StatefulWidget {
@@ -26,15 +28,6 @@ class _TabMenuControllerState extends State<TabMenuController> {
         icon: Icon(Icons.account_circle),
         title: Text("Login"),
       ),
-    },
-    {
-      "title": "Profil",
-      "route": LoginRoute(),
-      "needsLoginstatus": false,
-      "navigationAtributes": BottomNavigationBarItem(
-        icon: Icon(Icons.account_circle),
-        title: Text("Profil"),
-      ),
     }
   ];
 
@@ -45,6 +38,7 @@ class _TabMenuControllerState extends State<TabMenuController> {
     AppBar appBar(String title) => AppBar(
           title: Text(title),
         );
+    final _user = Provider.of<User>(context);
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -62,10 +56,15 @@ class _TabMenuControllerState extends State<TabMenuController> {
             icon: Icon(Icons.category),
             title: Text("Categories"),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            title: Text("Login"),
-          )
+          _user == null
+              ? BottomNavigationBarItem(
+                  icon: Icon(Icons.account_circle),
+                  title: Text("Login"),
+                )
+              : BottomNavigationBarItem(
+                  icon: Icon(Icons.account_circle),
+                  title: Text("Profil"),
+                ),
         ],
       ),
     );

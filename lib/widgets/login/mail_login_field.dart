@@ -76,6 +76,7 @@ class _MailLoginFieldState extends State<MailLoginField> {
                 label: "Facebook",
                 color: Colors.blue),
             RaisedButton(
+              child: Text("Login (Debug)"),
               onPressed: () async {
                 dynamic result = await _auth.signInAnon();
                 if (result == null) {
