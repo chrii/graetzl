@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graetzl/routes/home.dart';
 import 'package:graetzl/routes/login_route.dart';
+//import 'package:graetzl/services/auth.dart';
 
 class TabMenuController extends StatefulWidget {
   _TabMenuControllerState createState() => _TabMenuControllerState();
@@ -24,6 +25,15 @@ class _TabMenuControllerState extends State<TabMenuController> {
       "navigationAtributes": BottomNavigationBarItem(
         icon: Icon(Icons.account_circle),
         title: Text("Login"),
+      ),
+    },
+    {
+      "title": "Profil",
+      "route": LoginRoute(),
+      "needsLoginstatus": false,
+      "navigationAtributes": BottomNavigationBarItem(
+        icon: Icon(Icons.account_circle),
+        title: Text("Profil"),
       ),
     }
   ];
