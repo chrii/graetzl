@@ -21,40 +21,47 @@ class _MailLoginFieldState extends State<MailLoginField> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         SizedBox(height: 10.0),
-        TextField(
-          controller: _mailInput,
-          keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-              labelText: "E-Mail",
-              errorText:
-                  _isVaild ? null : "Die E-Mail Adresse ist nicht korrekt"),
-        ),
-        TextField(
-          decoration: InputDecoration(
-            labelText: "Password",
+        Form(
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                controller: _mailInput,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                    labelText: "E-Mail",
+                    errorText: _isVaild
+                        ? null
+                        : "Die E-Mail Adresse ist nicht korrekt"),
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: "Password",
+                ),
+                obscureText: true,
+              ),
+              ButtonBar(
+                alignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  RaisedButton.icon(
+                    elevation: 5.0,
+                    //textColor: Theme.of(context).primaryColor,
+                    color: Theme.of(context).primaryColor,
+                    onPressed: () {
+                      _validate();
+                      print(_mailInput.text);
+                    },
+                    icon: Icon(Icons.send),
+                    label: Text("Submit"),
+                  ),
+                  FlatButton(
+                    textColor: Theme.of(context).primaryColor,
+                    onPressed: () {},
+                    child: Text("Registrieren"),
+                  ),
+                ],
+              ),
+            ],
           ),
-          obscureText: true,
-        ),
-        ButtonBar(
-          alignment: MainAxisAlignment.start,
-          children: <Widget>[
-            RaisedButton.icon(
-              elevation: 5.0,
-              //textColor: Theme.of(context).primaryColor,
-              color: Theme.of(context).primaryColor,
-              onPressed: () {
-                _validate();
-                print(_mailInput.text);
-              },
-              icon: Icon(Icons.send),
-              label: Text("Submit"),
-            ),
-            FlatButton(
-              textColor: Theme.of(context).primaryColor,
-              onPressed: () {},
-              child: Text("Registrieren"),
-            ),
-          ],
         ),
         SizedBox(height: 10.0),
         Container(
