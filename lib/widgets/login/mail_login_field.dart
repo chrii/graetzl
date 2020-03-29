@@ -84,6 +84,7 @@ class _MailLoginFieldState extends State<MailLoginField> {
                 } else {
                   print('Signed in');
                   print(result.toString());
+                  Navigator.of(context).pushReplacementNamed("/user-page");
                 }
               },
             ),
