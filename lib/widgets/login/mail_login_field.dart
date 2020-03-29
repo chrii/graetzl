@@ -80,11 +80,9 @@ class _MailLoginFieldState extends State<MailLoginField> {
               onPressed: () async {
                 dynamic result = await _auth.signInAnon();
                 if (result == null) {
-                  print("error");
+                  print("Error");
                 } else {
                   print('Signed in');
-                  print(result.toString());
-                  Navigator.of(context).pushReplacementNamed("/user-page");
                 }
               },
             ),
