@@ -50,24 +50,18 @@ class HomeMenuElement extends StatelessWidget {
         child: Text(
           title,
           style: TextStyle(
-              color: Colors.black54,
-              fontSize: 14.0,
-              fontWeight: FontWeight.bold),
+              color: Colors.white, fontSize: 14.0, fontWeight: FontWeight.bold),
         ),
         decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black54,
-              blurRadius: 1.0,
-              offset: Offset(2.0, 2.0),
-            ),
-          ],
-          borderRadius: BorderRadius.circular(5.0),
-          gradient: LinearGradient(colors: [
-            Colors.greenAccent,
-            Colors.green,
-          ], begin: Alignment.bottomRight, end: Alignment.topCenter),
-        ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black54,
+                blurRadius: 8.0,
+                offset: Offset(2.5, 2.5),
+              ),
+            ],
+            borderRadius: BorderRadius.circular(5.0),
+            color: Theme.of(context).primaryColor),
       ),
     );
   }

@@ -7,7 +7,6 @@ class CategoryRoute extends StatelessWidget with DeviceSpecificMedia {
   Widget build(BuildContext context) {
     final _routeArguments =
         ModalRoute.of(context).settings.arguments as Map<String, Object>;
-    print(_routeArguments['tasks']);
     final appBar = AppBar(
       title: Text(
         _routeArguments['title'],
