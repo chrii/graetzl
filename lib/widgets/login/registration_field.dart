@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:graetzl/services/auth.dart';
 
 class RegistrationField extends StatefulWidget {
   _RegistrationFieldState createState() => _RegistrationFieldState();
@@ -9,6 +10,8 @@ class _RegistrationFieldState extends State<RegistrationField> {
   final _emailText = TextEditingController();
   final _passwordText = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final _auth = AuthService();
+  String error = "";
 
   build(BuildContext context) {
     return Column(
@@ -45,10 +48,17 @@ class _RegistrationFieldState extends State<RegistrationField> {
                     elevation: 5.0,
                     //textColor: Theme.of(context).primaryColor,
                     color: Theme.of(context).primaryColor,
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState.validate()) {
-                        print(
-                            "Email: ${_emailText.text} && Password: ${_passwordText.text}");
+                        dynamic result =
+                            await _auth.registerWithEmailAndPassword(
+                                _emailText.text, _passwordText.text);
+                        if (result == null) {
+                          setState(
+                              () => error = "Enter some valid credentials");
+                        } else {
+                          Navigator.of(context).pop();
+                        }
                       }
                     },
                     icon: Icon(Icons.send),
