@@ -12,6 +12,8 @@ class _MailLoginFieldState extends State<MailLoginField> {
   final AuthService _auth = AuthService();
   final _mailInput = TextEditingController();
   bool _isVaild = true;
+  void _routeRegistration(BuildContext context) =>
+      Navigator.of(context).pushNamed("/registration");
 
   void _validate() =>
       setState(() => _isVaild = EmailValidator.validate(_mailInput.text));
@@ -55,7 +57,7 @@ class _MailLoginFieldState extends State<MailLoginField> {
                   ),
                   FlatButton(
                     textColor: Theme.of(context).primaryColor,
-                    onPressed: () {},
+                    onPressed: () => _routeRegistration(context),
                     child: Text("Registrieren"),
                   ),
                 ],

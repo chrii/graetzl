@@ -39,6 +39,7 @@ class _TabMenuControllerState extends State<TabMenuController> {
         "route": _user == null ? LoginRoute() : UserProfileRoute(),
       }
     ];
+    print("[DEBUG: $_pages]");
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: appBar(_pages[_selectedPageIndex]["title"]),
