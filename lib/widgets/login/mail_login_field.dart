@@ -11,12 +11,11 @@ class MailLoginField extends StatefulWidget {
 class _MailLoginFieldState extends State<MailLoginField> {
   final AuthService _auth = AuthService();
   final _mailInput = TextEditingController();
-  bool _isVaild = true;
+  final _passwordInput = TextEditingController();
   void _routeRegistration(BuildContext context) =>
       Navigator.of(context).pushNamed("/registration");
-
-  void _validate() =>
-      setState(() => _isVaild = EmailValidator.validate(_mailInput.text));
+  final _formKey = GlobalKey<FormState>();
+  String error = "";
 
   build(BuildContext context) {
     return Column(
@@ -24,22 +23,27 @@ class _MailLoginFieldState extends State<MailLoginField> {
       children: <Widget>[
         SizedBox(height: 10.0),
         Form(
+          key: _formKey,
           child: Column(
             children: <Widget>[
               TextFormField(
+                validator: (val) => EmailValidator.validate(val)
+                    ? null
+                    : "Etwas stimmt mit der E-MailAdresse nicht",
                 controller: _mailInput,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                    labelText: "E-Mail",
-                    errorText: _isVaild
-                        ? null
-                        : "Die E-Mail Adresse ist nicht korrekt"),
+                  labelText: "E-Mail",
+                ),
               ),
               TextFormField(
+                validator: (val) =>
+                    val.length < 8 ? "Das Password ist zu kurz" : null,
                 decoration: InputDecoration(
                   labelText: "Password",
                 ),
                 obscureText: true,
+                controller: _passwordInput,
               ),
               ButtonBar(
                 alignment: MainAxisAlignment.start,
@@ -48,12 +52,19 @@ class _MailLoginFieldState extends State<MailLoginField> {
                     elevation: 5.0,
                     //textColor: Theme.of(context).primaryColor,
                     color: Theme.of(context).primaryColor,
-                    onPressed: () {
-                      _validate();
-                      print(_mailInput.text);
+                    onPressed: () async {
+                      if (_formKey.currentState.validate()) {
+                        dynamic result = await _auth.signInWithEmailAndPassword(
+                            _mailInput.text, _passwordInput.text);
+                        if (result == null) {
+                          setState(() {
+                            error = "Passwort oder Email Adresse ungültig";
+                          });
+                        }
+                      }
                     },
                     icon: Icon(Icons.send),
-                    label: Text("Submit"),
+                    label: Text("Einloggen"),
                   ),
                   FlatButton(
                     textColor: Theme.of(context).primaryColor,

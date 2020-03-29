@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graetzl/models/task_model.dart';
+import 'package:graetzl/models/user.dart';
+import 'package:provider/provider.dart';
 
 class TaskDetailCard extends StatelessWidget {
   final Task task;
@@ -73,11 +75,12 @@ class TaskDetailCard extends StatelessWidget {
 
   Widget _buttonBar(BuildContext context) => ButtonBar(
         children: <Widget>[
-          FlatButton(
-            onPressed: () {},
-            child: Text("Anschreiben"),
-            textColor: Theme.of(context).accentColor,
-          ),
+          if (Provider.of<User>(context) != null)
+            FlatButton(
+              onPressed: () {},
+              child: Text("Anschreiben"),
+              textColor: Theme.of(context).accentColor,
+            ),
         ],
       );
 
