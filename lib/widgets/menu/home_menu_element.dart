@@ -21,7 +21,8 @@ class HomeMenuElement extends StatelessWidget {
         TASKS.where((item) => (item['category'] as List).contains(id)).toList();
 
     final List<Task> tasksInit = specificTasks
-        .map((item) => Task(
+        .map(
+          (item) => Task(
             taskId: item['taskId'],
             user: item['user'],
             taskName: item['taskName'],
@@ -29,7 +30,9 @@ class HomeMenuElement extends StatelessWidget {
             taskType: item['taskType'],
             coordinates: item['coordinates'],
             category: item['category'],
-            taskDescription: item['taskDescription']))
+            taskDescription: item['taskDescription'],
+          ),
+        )
         .toList();
 
     Navigator.of(context).pushNamed("/categories", arguments: {
