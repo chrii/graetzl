@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graetzl/database/dbmock.dart';
-import 'package:graetzl/models/task_model.dart';
 
 class HomeMenuElement extends StatelessWidget {
   final String title;
@@ -17,26 +15,12 @@ class HomeMenuElement extends StatelessWidget {
     // Wheter or not it makes in this case no difference because ALL tasks should
     // be instantiated BEFORE the button is clicked
     // Inhere it should just filter the necessary tasks
-    final List specificTasks =
-        TASKS.where((item) => (item['category'] as List).contains(id)).toList();
-
-    final List<Task> tasksInit = specificTasks
-        .map((item) => Task(
-            taskId: item['taskId'],
-            user: item['user'],
-            taskName: item['taskName'],
-            image: item['image'],
-            taskType: item['taskType'],
-            coordinates: item['coordinates'],
-            category: item['category'],
-            taskDescription: item['taskDescription']))
-        .toList();
 
     Navigator.of(context).pushNamed("/categories", arguments: {
       "title": title,
       "image": mainImage,
       "subtitle": subtitle,
-      "tasks": tasksInit
+      "id": id
     });
   }
 

@@ -1,3 +1,5 @@
+import 'package:graetzl/models/task_model.dart';
+
 const USERS = [
   {
     "id": 1,
@@ -130,3 +132,18 @@ const TASKS = [
         "Wir haben einen Brettspiele Abend geplant und möchten euch einladen. Bei Interesse, meldet euch! :)"
   },
 ];
+
+final List<Task> TASKSMOCK = TASKS
+    .map(
+      (item) => Task(
+        taskId: item['taskId'],
+        user: item['user'],
+        taskName: item['taskName'],
+        image: item['image'],
+        taskType: item['taskType'],
+        coordinates: item['coordinates'],
+        category: item['category'],
+        taskDescription: item['taskDescription'],
+      ),
+    )
+    .toList();
