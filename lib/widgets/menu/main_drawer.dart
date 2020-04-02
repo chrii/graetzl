@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:graetzl/models/user.dart';
+import 'package:provider/provider.dart';
 import './menu_elements.dart';
 import '../../mixins/device_mixins.dart';
 
 class MainDrawer extends StatelessWidget with DeviceSpecificMedia {
-  // void _navigate(BuildContext context {
-  //   Navigator.of(context).pushNamed("/categories", arguments: {
-  //     "title": categoryItems['title'],
-  //     "image": categoryItems['mainImage'],
-  //     "subtitle": categoryItems['subtitle'],
-  //     "tasks": categoryItems['tasksInit']
-  //   });
-  // }
-
   build(BuildContext context) {
+    final _user = Provider.of<User>(context);
     final _userTile = MediaQuery.of(context).padding.top + 5;
     final _menuTile = MediaQuery.of(context).size.height;
 
@@ -29,18 +23,20 @@ class MainDrawer extends StatelessWidget with DeviceSpecificMedia {
             padding: EdgeInsets.only(top: _userTile),
             width: double.infinity,
             color: Theme.of(context).primaryColor,
-            child: ListTile(
-              title: Text("Olaf the Gianslayer"),
-              trailing: IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: () {},
-              ),
-              leading: CircleAvatar(
-                backgroundColor: Theme.of(context).accentColor,
-                foregroundColor: Colors.white,
-                child: Icon(Icons.account_circle),
-              ),
-            ),
+            child: _user != null
+                ? ListTile(
+                    title: Text(_user.uid),
+                    trailing: IconButton(
+                      icon: Icon(Icons.settings),
+                      onPressed: () {},
+                    ),
+                    leading: CircleAvatar(
+                      backgroundColor: Theme.of(context).accentColor,
+                      foregroundColor: Colors.white,
+                      child: Icon(Icons.account_circle),
+                    ),
+                  )
+                : Text('Anonym'),
           ),
           Divider(),
           Container(
