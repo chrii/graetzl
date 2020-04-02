@@ -44,6 +44,13 @@ class MainDrawer extends StatelessWidget with DeviceSpecificMedia {
           ),
           Divider(),
           Container(
+            child: ListTile(
+              title: Text("Home"),
+              onTap: () => Navigator.of(context).popAndPushNamed("/"),
+            ),
+          ),
+          Divider(),
+          Container(
             child: Column(
               children: <Widget>[
                 ...MAIN_MENU
@@ -51,8 +58,6 @@ class MainDrawer extends StatelessWidget with DeviceSpecificMedia {
                       (item) => ListTile(
                         title: Text(item['title']),
                         onTap: () {
-                          print('[NAVIGATOR]' + item.toString());
-                          // _navigate(context);
                           Navigator.of(context).pushReplacementNamed(
                             "/categories",
                             arguments: {
