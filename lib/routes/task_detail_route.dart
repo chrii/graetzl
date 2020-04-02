@@ -3,7 +3,6 @@ import 'package:graetzl/database/dbmock.dart';
 import 'package:graetzl/models/task_model.dart';
 import 'package:graetzl/widgets/cards/task_detail_card.dart';
 import 'package:graetzl/widgets/menu/main_drawer.dart';
-import '../widgets/menu/menu_elements.dart';
 
 class TaskDetailRoute extends StatelessWidget {
   @override
@@ -20,7 +19,7 @@ class TaskDetailRoute extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      drawer: MainDrawer(MAIN_MENU),
+      drawer: MainDrawer(),
       appBar: appBar,
       body: TaskDetailCard(user: _user['user'], task: _task),
     );

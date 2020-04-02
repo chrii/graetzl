@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:graetzl/database/dbmock.dart';
+import 'package:graetzl/models/task_model.dart';
+import 'package:graetzl/widgets/menu/main_drawer.dart';
 import '../mixins/device_mixins.dart';
 import '../widgets/lists/category_list.dart';
+import '../widgets/menu/main_drawer.dart';
 
 class CategoryRoute extends StatelessWidget with DeviceSpecificMedia {
+  List<Task> mockFunctionTasks(int id) {
+    return TASKSMOCK.where((item) => item.category.contains(id)).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     final _routeArguments =
         ModalRoute.of(context).settings.arguments as Map<String, Object>;
+
     final appBar = AppBar(
       title: Text(
         _routeArguments['title'],
@@ -16,6 +25,7 @@ class CategoryRoute extends StatelessWidget with DeviceSpecificMedia {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: appBar,
+      drawer: MainDrawer(),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +61,9 @@ class CategoryRoute extends StatelessWidget with DeviceSpecificMedia {
             SizedBox(height: 5.0),
             Container(
               height: deviceHeight(context, appBar),
-              child: CategoryList(_routeArguments['tasks']),
+              child: CategoryList(
+                mockFunctionTasks(_routeArguments['id']),
+              ),
             ),
           ],
         ),

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:graetzl/database/dbmock.dart';
 import './menu_elements.dart';
 import '../../mixins/device_mixins.dart';
 
 class MainDrawer extends StatelessWidget with DeviceSpecificMedia {
-  final List categoryItems;
-
-  void _navigate(BuildContext context) {
-    Navigator.of(context).pushNamed("/categories");
-  }
-
-  MainDrawer(this.categoryItems);
+  // void _navigate(BuildContext context {
+  //   Navigator.of(context).pushNamed("/categories", arguments: {
+  //     "title": categoryItems['title'],
+  //     "image": categoryItems['mainImage'],
+  //     "subtitle": categoryItems['subtitle'],
+  //     "tasks": categoryItems['tasksInit']
+  //   });
+  // }
 
   build(BuildContext context) {
     final _userTile = MediaQuery.of(context).padding.top + 5;
@@ -44,14 +44,29 @@ class MainDrawer extends StatelessWidget with DeviceSpecificMedia {
           ),
           Divider(),
           Container(
-            child: ListView.builder(
-              itemCount: MAIN_MENU.length,
-              itemBuilder: (context, index) => ListTile(
-                title: Text(MAIN_MENU[index]['title']),
-                onTap: () {
-                  _navigate(context);
-                },
-              ),
+            child: Column(
+              children: <Widget>[
+                ...MAIN_MENU
+                    .map(
+                      (item) => ListTile(
+                        title: Text(item['title']),
+                        onTap: () {
+                          print('[NAVIGATOR]' + item.toString());
+                          // _navigate(context);
+                          Navigator.of(context).pushReplacementNamed(
+                            "/categories",
+                            arguments: {
+                              "title": item['title'],
+                              "image": item['image'],
+                              "subtitle": item['subtitle'],
+                              "id": item['categoryId']
+                            },
+                          );
+                        },
+                      ),
+                    )
+                    .toList(),
+              ],
             ),
             // @TODO: Make this responsive
             height: 400.0,
