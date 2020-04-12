@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:graetzl/database/database_service.dart';
 import 'package:graetzl/models/user.dart';
 import 'package:graetzl/routes/home.dart';
 import 'package:graetzl/routes/login_route.dart';
@@ -16,6 +18,10 @@ class _TabMenuControllerState extends State<TabMenuController> {
 
   build(BuildContext context) {
     final _user = Provider.of<User>(context);
+
+    //final fetchDAta = DatabaseService(_user.uid).getUserData;
+    //print(fetchDAta.then((r) => r.documents.forEach((_) => print(_.data))));
+
     AppBar appBar(String title) => AppBar(
           title: Text(title),
           actions: <Widget>[
