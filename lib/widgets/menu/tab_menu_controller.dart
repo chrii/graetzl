@@ -21,9 +21,10 @@ class _TabMenuControllerState extends State<TabMenuController> {
   void _selectPage(int index) => setState(() => _selectedPageIndex = index);
 
   Widget build(BuildContext context) {
-    final _user = Provider.of<User>(context);
+    User _user = Provider.of<User>(context);
 
     if (_user != null) {
+      print(_user);
       final fetchDAta = DatabaseService(_user.uid).getUserData;
       if (userData == null) {
         fetchDAta.then((r) {
@@ -39,12 +40,14 @@ class _TabMenuControllerState extends State<TabMenuController> {
           });
         });
       }
+    } else {
+      _user = User(uid: "anonymous");
     }
 
     AppBar appBar(String title) => AppBar(
           title: Text(title),
           actions: <Widget>[
-            if (_user != null)
+            if (_user.uid != "anonymous")
               FlatButton.icon(
                 icon: Icon(Icons.power_settings_new),
                 label: Text("Sign Out"),
@@ -60,8 +63,8 @@ class _TabMenuControllerState extends State<TabMenuController> {
         "route": Home(),
       },
       {
-        "title": _user == null ? "Einloggen" : "Profil",
-        "route": _user == null ? LoginRoute() : UserProfileRoute(),
+        "title": _user.uid == "anonymous" ? "Einloggen" : "Profil",
+        "route": _user.uid == "anonymous" ? LoginRoute() : UserProfileRoute(),
       }
     ];
 
