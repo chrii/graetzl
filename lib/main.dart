@@ -14,8 +14,8 @@ void main() {
 
 class App extends StatelessWidget {
   build(BuildContext context) {
-    return StreamProvider<User>.value(
-      value: AuthService().user,
+    return StreamProvider<User>(
+      create: (BuildContext context) => AuthService().user,
       child: MaterialApp(
         title: "Grätzl",
         theme: ThemeData(

@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class DatabaseService {
   final String uuid;
@@ -18,6 +17,6 @@ class DatabaseService {
     });
   }
 
-  // Future<QuerySnapshot> get getUserData async =>
-  //     collection.where(uuid).getDocuments();
+  Future<QuerySnapshot> get getUserData async =>
+      collection.where(uuid).getDocuments();
 }
