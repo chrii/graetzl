@@ -68,36 +68,38 @@ class _TabMenuControllerState extends State<TabMenuController> {
     //print("[DEBUG: $_pages]");
     return _isLoadingData
         ? Loading()
-        : WillPopScope(
-            onWillPop: () => Navigator.of(context).pushNamed("/category"),
-            child: Scaffold(
-              backgroundColor: Theme.of(context).backgroundColor,
-              appBar: appBar(_pages[_selectedPageIndex]["title"]),
-              body: _pages[_selectedPageIndex]['route'],
-              bottomNavigationBar: BottomNavigationBar(
-                onTap: _selectPage,
-                backgroundColor: Theme.of(context).primaryColor,
-                unselectedItemColor: Colors.white70,
-                selectedItemColor: Colors.white,
-                currentIndex: _selectedPageIndex,
-                showSelectedLabels: true,
-                items: [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.category),
-                    title: Text("Kategorien"),
-                  ),
-                  _user == null
-                      ? BottomNavigationBarItem(
-                          icon: Icon(Icons.account_circle),
-                          title: Text("Einloggen"),
-                        )
-                      : BottomNavigationBarItem(
-                          icon: Icon(Icons.account_circle),
-                          title: Text("Profil"),
-                        ),
-                ],
+        : ChangeNotifierProvider(
+            create: (_) => userData,
+            child: WillPopScope(
+              onWillPop: () => Navigator.of(context).pushNamed("/category"),
+              child: Scaffold(
+                backgroundColor: Theme.of(context).backgroundColor,
+                appBar: appBar(_pages[_selectedPageIndex]["title"]),
+                body: _pages[_selectedPageIndex]['route'],
+                bottomNavigationBar: BottomNavigationBar(
+                  onTap: _selectPage,
+                  backgroundColor: Theme.of(context).primaryColor,
+                  unselectedItemColor: Colors.white70,
+                  selectedItemColor: Colors.white,
+                  currentIndex: _selectedPageIndex,
+                  showSelectedLabels: true,
+                  items: [
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.category),
+                      title: Text("Kategorien"),
+                    ),
+                    _user == null
+                        ? BottomNavigationBarItem(
+                            icon: Icon(Icons.account_circle),
+                            title: Text("Einloggen"),
+                          )
+                        : BottomNavigationBarItem(
+                            icon: Icon(Icons.account_circle),
+                            title: Text("Profil"),
+                          ),
+                  ],
+                ),
               ),
-            ),
-          );
+            ));
   }
 }
