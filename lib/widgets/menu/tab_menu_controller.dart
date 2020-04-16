@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:graetzl/database/database_service.dart';
 import 'package:graetzl/models/user.dart';
+import 'package:graetzl/models/user_data_model.dart';
 import 'package:graetzl/routes/home.dart';
 import 'package:graetzl/routes/login_route.dart';
 import 'package:graetzl/routes/user_profile_route.dart';
@@ -14,15 +15,31 @@ class TabMenuController extends StatefulWidget {
 }
 
 class _TabMenuControllerState extends State<TabMenuController> {
-  bool isLoadingData = true;
+  bool _isLoadingData = true;
+  UserData userData;
   int _selectedPageIndex = 0;
   void _selectPage(int index) => setState(() => _selectedPageIndex = index);
 
-  build(BuildContext context) {
+  Widget build(BuildContext context) {
     final _user = Provider.of<User>(context);
 
-    final fetchDAta = DatabaseService(_user.uid).getUserData;
-    fetchDAta.then((r) => print(r.documents.first.data));
+    if (_user != null) {
+      final fetchDAta = DatabaseService(_user.uid).getUserData;
+      if (userData == null) {
+        fetchDAta.then((r) {
+          final u = r.documents.first.data;
+          setState(() {
+            userData = UserData(
+              adress: u['adress'],
+              email: u['email'],
+              name: u['name'],
+              tasks: u['tasks'],
+            );
+            _isLoadingData = false;
+          });
+        });
+      }
+    }
 
     AppBar appBar(String title) => AppBar(
           title: Text(title),
@@ -48,8 +65,8 @@ class _TabMenuControllerState extends State<TabMenuController> {
       }
     ];
 
-    print("[DEBUG: $_pages]");
-    return isLoadingData
+    //print("[DEBUG: $_pages]");
+    return _isLoadingData
         ? Loading()
         : WillPopScope(
             onWillPop: () => Navigator.of(context).pushNamed("/category"),
@@ -82,6 +99,5 @@ class _TabMenuControllerState extends State<TabMenuController> {
               ),
             ),
           );
-    ;
   }
 }
