@@ -52,8 +52,11 @@ class _RegistrationFieldState extends State<RegistrationField> {
                       if (_formKey.currentState.validate()) {
                         dynamic result =
                             await _auth.registerWithEmailAndPassword(
-                                _emailText.text, _passwordText.text);
+                                email: _emailText.text,
+                                password: _passwordText.text,
+                                name: "Olaf the Giantslayer");
                         if (result == null) {
+                          print('[DEBUG] Registration complete');
                           setState(
                               () => error = "Enter some valid credentials");
                         } else {
