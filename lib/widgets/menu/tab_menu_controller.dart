@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:graetzl/database/database_service.dart';
 import 'package:graetzl/models/user.dart';
@@ -24,7 +23,7 @@ class _TabMenuControllerState extends State<TabMenuController> {
     User _user = Provider.of<User>(context);
 
     if (_user != null) {
-      print(_user);
+      //print(_user);
       final fetchDAta = DatabaseService(_user.uid).getUserData;
       if (userData == null) {
         fetchDAta.then((r) {
@@ -42,6 +41,7 @@ class _TabMenuControllerState extends State<TabMenuController> {
       }
     } else {
       _user = User(uid: "anonymous");
+      setState(() => _isLoadingData = false);
     }
 
     AppBar appBar(String title) => AppBar(
@@ -103,6 +103,7 @@ class _TabMenuControllerState extends State<TabMenuController> {
                   ],
                 ),
               ),
-            ));
+            ),
+          );
   }
 }
