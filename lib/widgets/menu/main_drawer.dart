@@ -47,30 +47,31 @@ class MainDrawer extends StatelessWidget with DeviceSpecificMedia {
           ),
           Divider(),
           Container(
-            child: Column(
-              children: <Widget>[
-                ...MAIN_MENU
-                    .map(
-                      (item) => ListTile(
-                        title: Text(item['title']),
-                        onTap: () {
-                          Navigator.of(context).pushReplacementNamed(
-                            "/categories",
-                            arguments: {
-                              "title": item['title'],
-                              "image": item['image'],
-                              "subtitle": item['subtitle'],
-                              "id": item['categoryId']
-                            },
-                          );
-                        },
-                      ),
-                    )
-                    .toList(),
-              ],
+            child: Expanded(
+              child: Column(
+                children: <Widget>[
+                  ...MAIN_MENU
+                      .map(
+                        (item) => ListTile(
+                          title: Text(item['title']),
+                          onTap: () {
+                            Navigator.of(context).pushReplacementNamed(
+                              "/categories",
+                              arguments: {
+                                "title": item['title'],
+                                "image": item['image'],
+                                "subtitle": item['subtitle'],
+                                "id": item['categoryId']
+                              },
+                            );
+                          },
+                        ),
+                      )
+                      .toList(),
+                ],
+              ),
             ),
             // @TODO: Make this responsive
-            height: 400.0,
           ),
         ],
       ),

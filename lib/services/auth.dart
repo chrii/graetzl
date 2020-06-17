@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
+import 'package:graetzl/database/database_service.dart';
 import 'package:graetzl/models/user.dart';
 
 class AuthService {
@@ -33,11 +35,17 @@ class AuthService {
     }
   }
 
-  Future registerWithEmailAndPassword(String email, String password) async {
+  Future registerWithEmailAndPassword(
+      {@required String email,
+      @required String name,
+      @required String password,
+      String adress}) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+      await DatabaseService(user.uid).updateData(name, adress, email);
+
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
